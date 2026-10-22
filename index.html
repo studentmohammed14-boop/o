@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>كنز المجرة  </title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;800&display=swap" rel="stylesheet">
+<style>
+:root{--n:#2fd6ff;--g:#ffd34d}
+*{box-sizing:border-box;margin:0;font-family:Cairo,'Segoe UI',Tahoma,sans-serif}
+[hidden]{display:none!important}
+body{min-height:100vh;color:#fff;text-align:center;background:radial-gradient(circle at 15% 8%,#55239f,transparent 45%),radial-gradient(circle at 85% 95%,#2b1070,transparent 50%),linear-gradient(#07031a,#140934)}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(2px 2px at 20px 30px,#fff,transparent),radial-gradient(1.5px 1.5px at 90px 80px,#ffe9a0,transparent),radial-gradient(2px 2px at 150px 20px,#9ff,transparent),radial-gradient(1px 1px at 60px 140px,#fff,transparent);background-size:180px 180px;animation:tw 3s infinite alternate}
+@keyframes tw{to{opacity:.4}}@keyframes fl{50%{transform:translateY(-8px)}}@keyframes pop{from{transform:scale(.3) rotate(-25deg);opacity:0}}@keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}@keyframes gl{to{box-shadow:0 0 28px var(--g),0 0 8px var(--n)}}
+header{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:#0007;border-bottom:1px solid var(--n);box-shadow:0 0 14px #2fd6ff55}
+header b{color:var(--g);font-size:1.3rem;text-shadow:0 0 10px var(--g)}
+#map{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;padding:8px;direction:ltr}
+#map i{width:22px;height:22px;border-radius:50%;font:12px/22px sans-serif;background:#3a3f58;border:1px solid #9aa3b8}
+#map i.on{background:var(--g);box-shadow:0 0 8px var(--g)}
+.card{max-width:580px;margin:12px auto;padding:18px;border-radius:22px;background:linear-gradient(160deg,#2c1264dd,#0d0630dd);border:2px solid var(--n);box-shadow:0 0 24px #2fd6ff55,inset 0 0 30px #6a2ee044}
+h1{font-size:1.7rem;color:var(--g);text-shadow:0 0 12px #ffd34d88;margin:6px 0}h2{font-size:1.2rem;margin:10px 0;line-height:1.8}
+.btn{display:inline-block;background:linear-gradient(#ffe27a,#ffb300);color:#2b1a00;font-weight:800;font-size:1.1rem;border:0;border-radius:40px;padding:10px 24px;margin:6px;cursor:pointer;box-shadow:0 0 14px #ffd34d88;transition:.2s}
+.btn:hover{transform:scale(1.06)}.opt{background:#1a1050;color:#fff;border:2px solid var(--n);box-shadow:0 0 10px #2fd6ff66}.opt:disabled{opacity:.4}
+input[type=text]{font-size:1.3rem;padding:10px;border-radius:14px;border:2px solid var(--n);background:#0a0430;color:#fff;text-align:center;width:min(100%,280px);margin:8px}
+.astro{font-size:4.5rem;animation:fl 3s infinite}.msg{min-height:1.6em;color:var(--n);font-weight:800;margin:8px 0}.big{font-size:2.6rem}.row{font-size:1.6rem;margin:10px 0}.sh{animation:sh .35s}
+.mg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;direction:ltr}
+.mc{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:2rem;border-radius:14px;background:linear-gradient(#4b24a8,#2a1068);border:2px solid var(--n);cursor:pointer}.mc.up{background:#ffffff33;border-color:var(--g)}
+.mz{display:grid;direction:ltr;gap:1px;width:min(92vw,420px);margin:10px auto;border:2px solid var(--n);border-radius:8px;overflow:hidden;background:#000}
+.mz i{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:clamp(12px,4vw,22px);background:#150a3a}.mz i.w{background:linear-gradient(#70748c,#3a3d55)}
+.pad{direction:ltr}.pad button{font-size:1.5rem;width:56px;height:56px;margin:3px;border-radius:14px;border:2px solid var(--n);background:#1a1050;cursor:pointer}
+.ar{position:relative;height:280px;margin:10px 0;border:2px dashed var(--n);border-radius:16px;overflow:hidden}.star{position:absolute;font-size:2.8rem;background:none;border:0;cursor:pointer;animation:pop .3s}
+#pv{max-width:100%;max-height:240px;border-radius:14px;margin:8px;border:2px solid var(--g)}
+#bx{margin:10px 0}.bx{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;width:96px;height:104px;margin:6px;border-radius:16px;font-size:2.4rem;line-height:1.3;background:linear-gradient(145deg,#8a5bff,#3a1a9c 60%,#1b0b55);border:2px solid var(--g);box-shadow:0 0 18px #ffd34d88;cursor:pointer;animation:fl 2.4s ease-in-out infinite}
+.bx:nth-child(2n){animation-delay:.4s}.bx:nth-child(3n){animation-delay:.8s}.bx.open{animation:none;background:#ffffff1f;cursor:default;font-size:.85rem}.bx.pick{border-color:#fff;box-shadow:0 0 30px var(--g)}
+#dice{position:fixed;left:12px;bottom:16px;width:64px;height:64px;border-radius:18px;border:2px solid var(--g);background:linear-gradient(#3a1a9c,#160a4a);font-size:1.9rem;cursor:pointer;z-index:5;box-shadow:0 0 14px #ffd34d66}#dice.glow{animation:gl 1s infinite alternate}
+#ov{position:fixed;inset:0;background:#000b;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:8;font-size:1.4rem}.bolt{font-size:5rem;text-shadow:0 0 30px var(--g);animation:pop .3s}
+#tt{position:fixed;bottom:92px;left:50%;transform:translateX(-50%);background:#000d;border:1px solid var(--g);border-radius:20px;padding:10px 18px;z-index:9;width:max-content;max-width:90vw}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<header><b>🌌 (عمر) كنز المجرة</b><span id="sc"></span></header>
+<div id="map"></div>
+<main id="app"></main>
+<button id="dice" title="النرد الفضائي">⚡</button>
+<div id="ov" hidden></div><div id="tt" hidden></div>
+<script>
+/* ===== الإعدادات ===== */
+const CFG={
+  apiKey:'AQ.Ab8RN6KmMSp5067sW97t3lJ-HFGFHDscONn86WQcAIkg_jvC_g', // مفتاح Gemini (يظهر لكل من يفتح الملف!)
+  models:['gemini-2.5-flash','gemini-flash-latest'],              // تُجرَّب بالترتيب
+  base:10                                                         // نقاط إتمام أي تحدٍّ
+};
+
+/* ===== ✂️ قائمة التحديات — عدّلها أو الصق قائمتك هنا =====
+ الأنواع: mcq اختيار من متعدد (o الخيارات، a رقم الإجابة الصحيحة) · fill إكمال فراغ (q السؤال، a الإجابات المقبولة)
+ img رسم/صلصال بالصورة (d المطلوب، k وصف للذكاء الاصطناعي) · mem ذاكرة (c أزواج) · maze متاهة (m رقم المتاهة)
+ ord ترتيب · tap نقر سريع · sort تصنيف أجرام */
+const P=a=>a.map(x=>[x,x]);
+const CH=[
+/*1*/{t:'mcq',n:'أكبر كوكب',q:'ما هو أكبر كوكب في المجموعة الشمسية؟',o:['المشتري','زحل','الأرض'],a:0},
+/*2*/{t:'maze',n:'متاهة النيازك',d:'أخرج الصاروخ من حزام النيازك المتعرج!',m:0,p:'🚀',e:'🌟'},
+/*3*/{t:'mem',n:'ذاكرة رواد الفضاء',d:'تذكّر مكان رائد الفضاء وطابق كل اثنين متشابهين!',c:P(['👨‍🚀','📀','🥏','🚀','🛸','🌙'])},
+/*4*/{t:'img',n:'صلصال: نيزك فضائي',d:'شكّل نيزكاً أو صخرة فضائية بالصلصال، ثم صوّرها!',k:'مجسم صلصال لنيزك أو صخرة فضائية'},
+/*5*/{t:'ord',n:'ترتيب الكواكب',d:'رتّب الكواكب حسب قربها من الشمس (الأقرب أولاً) ☀️',o:[['⚫','عطارد'],['🟡','الزهرة'],['🌍','الأرض'],['🔴','المريخ']]},
+/*6*/{t:'fill',n:'أكمل الفراغ',q:'الغاز المحيط بكوكب الزهرة يتكون أساساً من ثاني أكسيد الكربون، ويُعرف بأنه الكوكب الأكثر (........) في المجموعة الشمسية',a:['سخونة','حارة','حرارة','حار','ساخن','أسخن']},
+/*7*/{t:'mcq',n:'حلقات الكواكب',q:'أي من هذه الكواكب يمتلك حلقات واضحة ومميزة حوله؟',o:['زحل','المريخ','أورانوس'],a:0},
+/*8*/{t:'mem',n:'مطابقة الكواكب',d:'اكشف بطاقتين متشابهتين من الكواكب!',c:P(['🌍','🪐','🌕','☀️','🔴','🔵'])},
+/*9*/{t:'img',n:'ارسم كوكب زحل',d:'ارسم كوكب زحل بحلقاته الواضحة على ورقة، ثم صوّرها!',k:'رسمة لكوكب زحل مع حلقاته'},
+/*10*/{t:'maze',n:'متاهة رائد الفضاء',d:'ساعد رائد الفضاء ليصل إلى مركبته عبر مسار النجوم!',m:1,p:'👨‍🚀',e:'🛸'},
+/*11*/{t:'mcq',n:'أقرب كوكب',q:'ما هو أقرب كوكب إلى الشمس؟',o:['عطارد','الزهرة','الأرض'],a:0},
+/*12*/{t:'tap',n:'النقر السريع',d:'اضغط على 5 نجوم قبل أن تختفي!'},
+/*13*/{t:'fill',n:'أكمل الفراغ',q:'المسار الدائري أو البيضاوي الذي تسلكه الكواكب حول الشمس يُسمى (........)',a:['مدار','المدار']},
+/*14*/{t:'mem',n:'مطابقة الصاروخ',d:'صِل كل صاروخ بمحطته الفضائية الخاصة به!',c:[['🚀','🛰️'],['🛸','🌌'],['👨‍🚀','🏁'],['☄️','🌠']]},
+/*15*/{t:'mcq',n:'كوكب الحياة',q:'ما هو الكوكب الذي نعيش عليه وتتدفق المياه السائلة على سطحه؟',o:['الأرض','المريخ','المشتري'],a:0},
+/*16*/{t:'maze',n:'متاهة المحطة',d:'وصّل كوكب الأرض بالمحطة الفضائية الدولية!',m:2,p:'🌍',e:'🛰️'},
+/*17*/{t:'sort',n:'تصنيف الأجرام',d:'هل هذا كوكب أم كويكب؟ اضغط الصندوق الصحيح!',o:[['🪐','كوكب زحل',0],['🔴','المريخ',0],['🌍','كوكب الأرض',0],['🪨','صخرة صغيرة في حزام الكويكبات',1],['☄️','كويكب إيروس الصخري',1],['🌑','جسم صخري صغير مثل فيستا',1]]},
+/*18*/{t:'mem',n:'ذاكرة النيازك',d:'طابق أزواج النيازك المتشابهة!',c:P(['☄️','🌠','💫','🪨','🌑','✨'])},
+/*19*/{t:'img',n:'ارسم صاروخاً',d:'ارسم صاروخاً فضائياً منطلقاً بسرعة بين النجوم، ثم صوّره!',k:'رسمة لصاروخ فضائي منطلق بين النجوم'},
+/*20*/{t:'mcq',n:'الكوكب الأحمر',q:'ما هو الكوكب الصخري المعروف رسمياً بـ«الكوكب الأحمر» بسبب صخوره الغنية بالحديد؟',o:['المريخ','الزهرة','عطارد'],a:0}
+];
+/* المتاهات: # جدار · S بداية · E نهاية */
+const MZ=[
+['###########','#S..#.....#','#.#.#.###.#','#.#...#...#','#.#####.###','#.....#...#','###.###.#.#','#...#...#.#','#.###.###.#','#.....#..E#','###########'],
+['#########','#S..#...#','#.#.#.#.#','#.#...#.#','#.#####.#','#...#...#','###.#.###','#...#..E#','#########'],
+['###########','#S#.....#.#','#.#.###.#.#','#.#...#...#','#.###.#.###','#.....#...#','###.#####.#','#...#...E.#','###########']];
+
+/* ===== أدوات ===== */
+const $=s=>document.querySelector(s),app=$('#app'),S={score:0,pos:0,rolls:1,w:0},G={};
+const shuf=a=>{for(let i=a.length;i>1;){const j=Math.random()*i--|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const say=m=>{const e=$('#msg');if(e)e.textContent=m};
+const toast=m=>{const t=$('#tt');t.textContent=m;t.hidden=0;clearTimeout(toast.h);toast.h=setTimeout(()=>t.hidden=1,2400)};
+const shake=e=>{e.classList.remove('sh');void e.offsetWidth;e.classList.add('sh')};
+function hud(){$('#sc').textContent=`⭐ ${S.score}  ⚡ ${S.rolls}`;$('#map').innerHTML=[...Array(21).keys()].map(i=>`<i class="${i<=S.pos?'on':''}">${i==S.pos?'🚀':i==20?'🏆':''}</i>`).join('');$('#dice').classList.toggle('glow',S.rolls>0)}
+
+/* ===== الذكاء الاصطناعي (Gemini) ===== */
+async function ai(prompt,img){
+  const parts=[{text:prompt}];if(img)parts.push({inlineData:{mimeType:'image/jpeg',data:img}});
+  const body=JSON.stringify({contents:[{role:'user',parts}],generationConfig:{temperature:.2,responseMimeType:'application/json'}}),k=CFG.apiKey;
+  const GM=m=>`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${k}`;
+  const VX=m=>`https://aiplatform.googleapis.com/v1/publishers/google/models/${m}:generateContent?key=${k}`;
+  for(const f of(k.startsWith('AQ.')?[VX,GM]:[GM,VX]))for(const m of CFG.models){
+    try{const r=await fetch(f(m),{method:'POST',headers:{'Content-Type':'application/json'},body});
+      if(r.ok){const j=await r.json(),t=(j.candidates?.[0]?.content?.parts||[]).map(p=>p.text||'').join('');
+        try{return JSON.parse(t.replace(/```json|```/g,'').trim())}catch(e){return{ok:/"ok"\s*:\s*true/.test(t),msg:''}}}
+    }catch(e){}
+  }
+  throw new Error('AI unavailable');
+}
+const SYS='أنت مساعد ودود في لعبة فضاء لطفل عمره 8-10 سنوات. كن مشجعاً ومتسامحاً جداً. أجب بـ JSON فقط بالشكل {"ok":true أو false,"msg":"رسالة عربية قصيرة مشجعة (جملة أو جملتان)"}. ';
+const PI=c=>SYS+`المطلوب من الطفل: ${c.d} (${c.k}). انظر إلى الصورة (عمل حقيقي صنعه الطفل). اقبلها (ok=true) إن كانت محاولة معقولة للمطلوب حتى لو لم تكن متقنة، ولا تقبلها إن لم تكن لها علاقة بالمطلوب مع تلميح لطيف.`;
+const PT=(c,v)=>SYS+`السؤال: ${c.q}\nالإجابات الصحيحة المقبولة: ${c.a.join('، ')}\nكتب الطفل: «${v}»\nتسامح جداً مع الأخطاء الإملائية والحروف الناقصة أو المفصولة (مثل «م د ر» = «مدار»، «حر» = «حرارة») والمرادفات؛ اقبل ما دام المقصود مفهوماً.`;
+async function check(c,v,img){
+  say('🤖 الذكاء الاصطناعي يفحص إجابتك…');
+  try{const r=await ai(img?PI(c):PT(c,v),img);
+    if(r.ok){say(r.msg||'ممتاز! 🌟');setTimeout(win,1600)}else say(r.msg||'قريب جداً! حاول مرة أخرى 💪')
+  }catch(e){
+    if(img){say('تعذّر الاتصال بالذكاء الاصطناعي 🛰️ يمكن لولي الأمر تأكيد العمل:');const f=$('#fb');f.innerHTML='<button class="btn opt">✔ تأكيد ولي الأمر</button>';f.firstChild.onclick=()=>win()}
+    else say('لم أفهم إجابتك جيداً، حاول مرة أخرى 💪')}
+}
+/* تسامح محلي مع الأخطاء الإملائية (قبل الاستعانة بالذكاء الاصطناعي) */
+const nz=s=>s.replace(/[\u064B-\u0652\u0640\s]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه');
+const sub=(a,b)=>{let i=0;for(const x of b)if(x==a[i])i++;return i==a.length};
+const lev=(a,b)=>{const d=[...Array(b.length+1).keys()];for(let i=1;i<=a.length;i++){let p=d[0];d[0]=i;for(let j=1;j<=b.length;j++){const t=d[j];d[j]=Math.min(d[j]+1,d[j-1]+1,p+(a[i-1]==b[j-1]?0:1));p=t}}return d[b.length]};
+const near=(g,w)=>g==w||g.length>1&&(w.includes(g)&&g[0]==w[0]||g.includes(w)||sub(g,w)&&g[0]==w[0])||lev(g,w)<=Math.ceil(w.length/3);
+const shrink=f=>new Promise(r=>{const i=new Image();i.onload=()=>{const s=Math.min(1,800/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*s;c.height=i.height*s;c.getContext('2d').drawImage(i,0,0,c.width,c.height);r(c.toDataURL('image/jpeg',.8).split(',')[1])};i.src=URL.createObjectURL(f)});
+
+/* ===== الشاشات ===== */
+function home(){
+  app.innerHTML=`<div class="card"><div class="astro"><img src="image.png" alt="رائد فضاء" style="width: 120px; height: auto;"></div><h1>  اهلا بك يا عمر في كنز المجرة</h1><p>أدخل رقم التحدي (من 1 إلى ${CH.length}):</p><input id="num" type="text" inputmode="numeric" maxlength="2"><br><button class="btn" id="go">🚀 بدء التحدي</button><p id="msg" class="msg"></p></div>`;
+  
+  const numInput = $('#num');
+  numInput.focus();
+
+  const go = () => {
+    const n = +numInput.value.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+    n >= 1 && n <= CH.length ? start(n) : say(`اكتب رقماً من 1 إلى  ${CH.length} 🌟`);
+  };
+
+  $('#go').onclick = go;
+  numInput.onkeydown = e => {
+    if (e.key === 'Enter') go();
+  };
+}
+function start(n){
+  const c=CH[n-1];S.w=0;document.onkeydown=null;
+  app.innerHTML=`<div class="card"><small>🪐 التحدي ${n} من ${CH.length}</small><h1>${c.n}</h1><div id="gm"></div><p id="msg" class="msg"></p><div id="fb"></div><button class="btn opt" id="bk">↩ رجوع</button></div>`;
+  $('#bk').onclick=home;G[c.t](c,$('#gm'));
+}
+function win(){
+  if(S.w)return;S.w=1;S.score+=CFG.base;S.rolls++;hud();document.onkeydown=null;
+  const R=shuf([['💎','+10 نقاط',s=>s+10],['⭐','+5 نقاط',s=>s+5],['🚀','نقاطك ×1.5',s=>Math.round(s*1.5)],['💥','فخ! −30 نقطة',s=>Math.max(0,s-30)],['🌫️','لا شيء… حاول مرة أخرى',s=>s]]);
+  app.innerHTML=`<div class="card"><h1>🎉 أحسنت يا بطل الفضاء!</h1><p>ربحت +${CFG.base} نقاط ورمية نرد ⚡<br>اختر صندوقاً فضائياً لتفتحه:</p><div id="bx">${R.map((r,i)=>`<div class="bx" data-i="${i}">🎁</div>`).join('')}</div><p id="msg" class="msg"></p></div>`;
+  const bx=$('#bx'),show=(el,r)=>{el.classList.add('open');el.innerHTML=`<b style="font-size:2rem">${r[0]}</b>${r[1]}`};
+  bx.onclick=e=>{const x=e.target.closest('.bx');if(!x||bx.dataset.d)return;bx.dataset.d=1;
+    const r=R[+x.dataset.i];S.score=r[2](S.score);hud();show(x,r);x.classList.add('pick');say(`نقاطك الآن: ${S.score} ⭐`);
+    setTimeout(()=>{bx.querySelectorAll('.bx:not(.open)').forEach(el=>{show(el,R[+el.dataset.i]);el.style.opacity=.5});
+      app.querySelector('.card').insertAdjacentHTML('beforeend','<button class="btn" id="nx">التحدي التالي ➜</button>');$('#nx').onclick=home},1100)};
+}
+
+/* ===== النرد الفضائي ===== */
+let busy=0;
+$('#dice').onclick=()=>{
+  if(busy)return;if(S.rolls<1)return toast('أكمل تحدياً لتحصل على رمية نرد جديدة! ⚡');
+  busy=1;S.rolls--;hud();const ov=$('#ov'),b=n=>`<div class="bolt">${'⚡'.repeat(n)}</div>`;ov.hidden=0;let k=0;
+  const iv=setInterval(()=>{ov.innerHTML=b(1+Math.random()*3|0);
+    if(++k>9){clearInterval(iv);const n=1+Math.random()*3|0;S.pos=Math.min(20,S.pos+n);hud();
+      ov.innerHTML=b(n)+`<p>تقدّمتَ ${['','خطوة واحدة','خطوتين','ثلاث خطوات'][n]} على الخريطة! 🚀</p>`;
+      setTimeout(()=>{ov.hidden=1;busy=0;if(S.pos>=20)toast('🏆 وصلت إلى كنز المجرة! أنت بطل الفضاء!')},1600)}},90);
+};
+
+/* ===== أنواع التحديات ===== */
+G.mcq=(c,b)=>{const t=c.o[c.a];
+  b.innerHTML=`<h2>${c.q}</h2>`+shuf([...c.o]).map(o=>`<button class="btn opt">${o}</button>`).join('');
+  b.onclick=e=>{const x=e.target.closest('.opt');if(!x)return;x.textContent==t?win():(shake(x),say('حاول مرة أخرى، أنت تستطيع! 💪'))}};
+
+G.fill=(c,b)=>{
+  b.innerHTML=`<h2>${c.q}</h2><input id="ans" type="text" placeholder="اكتب الكلمة هنا ✍️" autocomplete="off"><br><button class="btn" id="chk">تحقق ✨</button>`;
+  $('#chk').onclick=async()=>{const v=$('#ans').value.trim();if(!v)return say('اكتب إجابتك أولاً ✍️');
+    if(c.a.some(w=>near(nz(v),nz(w)))){say('رائع! إجابة صحيحة 🌟');setTimeout(win,1200)}else await check(c,v)};
+  $('#ans').onkeydown=e=>e.key=='Enter'&&$('#chk').click()};
+
+G.img=(c,b)=>{
+  b.innerHTML=`<h2>${c.d}</h2><label class="btn">📸 التقط صورة أو ارفعها<input id="f" type="file" accept="image/*" hidden></label><br><img id="pv" hidden alt="">`;
+  $('#f').onchange=async e=>{const f=e.target.files[0];if(!f)return;const im=await shrink(f);$('#pv').src='data:image/jpeg;base64,'+im;$('#pv').hidden=0;$('#fb').innerHTML='';check(c,'',im)}};
+
+G.mem=(c,b)=>{const cs=shuf(c.c.flatMap((p,i)=>[[p[0],i],[p[1],i]]));let a=null,lk=0,m=0;
+  b.innerHTML=`<h2>${c.d}</h2><div class="mg">${cs.map((x,i)=>`<div class="mc" data-i="${i}">❓</div>`).join('')}</div>`;
+  b.onclick=e=>{const el=e.target.closest('.mc');if(!el||lk||el.classList.contains('up'))return;
+    const i=+el.dataset.i;el.textContent=cs[i][0];el.classList.add('up');
+    if(a==null){a=i;return}
+    const j=a;a=null;
+    if(cs[j][1]==cs[i][1]){if(++m==c.c.length)setTimeout(win,700);return}
+    lk=1;setTimeout(()=>{[i,j].forEach(k=>{const q=b.querySelector(`[data-i="${k}"]`);q.textContent='❓';q.classList.remove('up')});lk=0},800)}};
+
+G.maze=(c,b)=>{const M=MZ[c.m],W=M[0].length;let x=0,y=0,ex=0,ey=0;
+  M.forEach((r,j)=>[...r].forEach((ch,i)=>{if(ch=='S'){x=i;y=j}if(ch=='E'){ex=i;ey=j}}));
+  b.innerHTML=`<h2>${c.d}</h2><div id="mz" class="mz" style="grid-template-columns:repeat(${W},1fr)"></div><div class="pad"><button data-d="0,-1">⬆️</button><br><button data-d="-1,0">⬅️</button><button data-d="0,1">⬇️</button><button data-d="1,0">➡️</button></div><small>اضغط الأسهم أو المربعات المجاورة</small>`;
+  const dr=()=>$('#mz').innerHTML=M.map((r,j)=>[...r].map((ch,i)=>`<i class="${ch=='#'?'w':''}" data-p="${i},${j}">${i==x&&j==y?c.p:i==ex&&j==ey?c.e:''}</i>`).join('')).join('');
+  const mv=(dx,dy)=>{const nx=x+dx,ny=y+dy;if(M[ny]?.[nx]&&M[ny][nx]!='#'){x=nx;y=ny;dr();if(x==ex&&y==ey){document.onkeydown=null;setTimeout(win,500)}}};
+  dr();
+  b.onclick=e=>{const d=e.target.closest('[data-d]'),p=e.target.closest('[data-p]');
+    if(d)mv(...d.dataset.d.split(',').map(Number));
+    else if(p){const[i,j]=p.dataset.p.split(',').map(Number);if(Math.abs(i-x)+Math.abs(j-y)==1)mv(i-x,j-y)}};
+  document.onkeydown=e=>{const k={ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0]}[e.key];if(k){e.preventDefault();mv(...k)}}};
+
+G.ord=(c,b)=>{let n=0;
+  b.innerHTML=`<h2>${c.d}</h2><div class="row" id="sl">☀️</div><div>${shuf(c.o.map((o,i)=>[...o,i])).map(o=>`<button class="btn opt" data-i="${o[2]}">${o[0]} ${o[1]}</button>`).join('')}</div>`;
+  b.onclick=e=>{const x=e.target.closest('.opt');if(!x||x.disabled)return;
+    if(+x.dataset.i==n){x.disabled=true;$('#sl').append(' ← '+x.textContent);if(++n==c.o.length)setTimeout(win,800)}
+    else{shake(x);say('ليس هذا بعد! فكّر: أيّها أقرب إلى الشمس ☀️؟')}}};
+
+G.tap=(c,b)=>{let h=0;
+  b.innerHTML=`<h2>${c.d}</h2><div class="big" id="cn">⭐ 0 / 5</div><div class="ar" id="ar"></div><button class="btn" id="st">ابدأ ▶</button>`;
+  const ar=$('#ar'),sp=()=>{if(!ar.isConnected)return;ar.innerHTML='';
+    const s=document.createElement('button');s.className='star';s.textContent='⭐';s.style.left=Math.random()*80+'%';s.style.top=Math.random()*72+'%';
+    const t=setTimeout(()=>{if(!ar.isConnected)return;s.remove();say('اختفت النجمة بسرعة! 💨');sp()},1500);
+    s.onclick=()=>{clearTimeout(t);s.remove();$('#cn').textContent=`⭐ ${++h} / 5`;h>=5?win():setTimeout(sp,250)};ar.append(s)};
+  $('#st').onclick=e=>{e.currentTarget.remove();sp()}};
+
+G.sort=(c,b)=>{const q=shuf([...c.o]);let n=0;
+  const sh=()=>{b.innerHTML=`<h2>${c.d}</h2><div class="big">${q[n][0]}</div><p>${q[n][1]}</p><button class="btn opt" data-v="0">🪐 كوكب</button><button class="btn opt" data-v="1">☄️ كويكب</button><p>${n} / ${q.length}</p>`};
+  sh();
+  b.onclick=e=>{const x=e.target.closest('.opt');if(!x)return;
+    if(+x.dataset.v==q[n][2]){++n==q.length?win():sh()}else{shake(x);say('فكّر مرة أخرى! 🤔')}}};
+
+hud();home();
+</script>
+</body>
+</html>
